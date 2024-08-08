@@ -3,5 +3,5 @@ public interface RideInterface {
     void RemoveVisitorFromQueue(Visitor visitor);
     void PrintQueue();
     //void RunOneCycle();
-    //void PrintRideHistory();
+    void PrintRideHistory();
 }
