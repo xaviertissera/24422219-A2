@@ -1,25 +1,29 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
+        // Main method content
+    }
 
-        Person person = new Person("Xavier Tissera", 25, "Male");
+    public void partThree() {
+        // Part 3
+    }
 
-        // Employee instance
-        Employee employee = new Employee("Jack Greg", 28, "Female", "E123", "Ride Operator");
+    public void partFourA() {
+        // Part 4A
+    }
 
-        // Visitor instance
-        Visitor visitor = new Visitor("Alice Johnson", 25, "Female", "V456", "VIP");
+    public void partFourB() {
+        // Part 4B
+    }
 
-        // Ride instance
-        Ride ride = new Ride("Boomerang Coaster", 20, employee);
+    public void partFive() {
+        // Part 5
+    }
 
-        // Display output
-        System.out.println("Person Name: " + person.getName());
-        System.out.println("Employee Name: " + employee.getName() + ", Position: " + employee.getPosition());
-        System.out.println("Visitor Name: " + visitor.getName() + ", Ticket Type: " + visitor.getTicketType());
-        System.out.println("Ride Name: " + ride.getRideName() + ", Operator: " + ride.getOperator().getName());
+    public void partSix() {
+        // Part 6
+    }
 
-
-
-
+    public void partSeven() {
+        // Part 7
     }
 }
