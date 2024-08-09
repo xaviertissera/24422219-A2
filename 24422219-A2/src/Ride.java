@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -169,6 +171,22 @@ public class Ride implements RideInterface {
         numOfCycles++;
         System.out.println("Run Cycle completed. Total cycles run: " + numOfCycles);
     }
+
+    // Write ride history to a CSV file, file name will be passing later
+    public void writeRideHistoryToCSV(String fileName) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("Ride Name: " + this.rideName + "\n");
+            writer.write("Visitor Name,Age,Gender,Visitor ID,Ticket Type\n");
+            for (Visitor visitor : rideHistory) {
+                writer.write(visitor.getName() + "," + visitor.getAge() + "," + visitor.getGender() + "," + visitor.getVisitorId() + "," + visitor.getTicketType() + "\n");
+            }
+            System.out.println("Ride history written to " + fileName);
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing the ride history to the file: " + e.getMessage());
+        }
+    }
+
+
 
 
 
