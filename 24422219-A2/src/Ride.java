@@ -6,12 +6,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
 public class Ride implements RideInterface {
     private String rideName;
     private int capacity;
     private Employee operator;  // This variable will be used to know if the ride is open and who is operating it
     private Queue<Visitor> waitingLine; // Visitor Waiting List
     private LinkedList<Visitor> rideHistory; // This is used to keep the record on Ride History
+    private LinkedList<Visitor> visitorsignup;
     private int maxRider;
     private int numOfCycles;
 
@@ -183,6 +188,36 @@ public class Ride implements RideInterface {
             System.out.println("Ride history written to " + fileName);
         } catch (IOException e) {
             System.out.println("An error occurred while writing the ride history to the file: " + e.getMessage());
+        }
+    }
+
+    // Reading the ride history from a CSV file and storing it into a LinkedList
+    public void readRideHistoryFromCSV(String fileName) {
+        visitorsignup = new LinkedList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line = reader.readLine(); // Skip the header line
+            line = reader.readLine(); // Skip the second line
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length >= 5) {
+
+                    Visitor visitor = new Visitor(data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]);
+                    visitorsignup.add(visitor);
+                }
+            }
+            System.out.println("The Ride history successfully captured from " + fileName);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error from file: " + e.getMessage());
+        }
+    }
+
+    // Printing all visitors signed up from the file
+    public void printVisitorsSignup() {
+        System.out.println("Number of visitors signed up: " + visitorsignup.size());
+        for (Visitor visitor : visitorsignup) {
+            System.out.println(visitor);
         }
     }
 

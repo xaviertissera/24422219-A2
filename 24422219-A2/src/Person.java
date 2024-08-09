@@ -5,7 +5,9 @@ public abstract class Person {
 
     // Default Constructor
     public Person() {
-
+        this.name = "";
+        this.age = 0;
+        this.gender = "";
     }
 
     // With Parameters

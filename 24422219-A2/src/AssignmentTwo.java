@@ -7,6 +7,7 @@ public class AssignmentTwo {
         assignment.partFourB();
         assignment.partFive();
         assignment.partSix();
+        assignment.partSeven();
     }
 
     public void partThree() {
@@ -189,6 +190,20 @@ public class AssignmentTwo {
 
         System.out.println();
         System.out.println("Part 7---------------------------------");
+    }
+
+    public void partSeven() {
+
+        // Part 7
+        Ride spookyCoaster = new Ride("Spooky Coaster", 2, new Employee("Nina Morris", 29, "Female", "E128", "Ride Operator"), 2);
+
+        System.out.println();
+        // Reading from the CSV file
+        spookyCoaster.readRideHistoryFromCSV("rideHistoryRecord.csv");
+
+        // Printing the number of Visitors and details from the LinkedList
+        System.out.println();
+        spookyCoaster.printVisitorsSignup();
     }
 
 

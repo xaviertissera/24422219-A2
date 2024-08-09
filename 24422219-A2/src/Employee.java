@@ -4,6 +4,9 @@ public class Employee extends Person {
 
     // Default
     public Employee() {
+        super();
+        this.employeeId = "";
+        this.position = "";
     }
 
     // With parameters
