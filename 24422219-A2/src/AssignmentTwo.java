@@ -4,6 +4,7 @@ public class AssignmentTwo {
         AssignmentTwo assignment = new AssignmentTwo();
         assignment.partThree();
         assignment.partFourA();
+        assignment.partFourB();
     }
 
     public void partThree() {
@@ -61,7 +62,38 @@ public class AssignmentTwo {
 
         // Print all the Visitors in the Ride history
         supermanEscape.PrintRideHistory();
-        
+
+    }
+
+    public void partFourB() {
+        // Part 4B
+        // New Ride object
+        Ride kansasTwister = new Ride("Kansas Twister", 3, new Employee("Alice Smith", 30, "Female", "E125", "Ride Operator"));
+
+        // New Visitor objects
+        Visitor visitor1 = new Visitor("Zara", 22, "Female", "V011", "Regular");
+        Visitor visitor2 = new Visitor("Bob", 34, "Male", "V012", "Regular");
+        Visitor visitor3 = new Visitor("Eve", 29, "Female", "V013", "Regular");
+        Visitor visitor4 = new Visitor("Mike", 31, "Male", "V014", "Regular");
+        Visitor visitor5 = new Visitor("Steve", 27, "Male", "V015", "Regular");
+
+        // Adding Visitors to the Ride history
+        kansasTwister.addVisitorToRideHistory(visitor1);
+        kansasTwister.addVisitorToRideHistory(visitor2);
+        kansasTwister.addVisitorToRideHistory(visitor3);
+        kansasTwister.addVisitorToRideHistory(visitor4);
+        kansasTwister.addVisitorToRideHistory(visitor5);
+
+        // Printing all Visitors in the Ride history
+        System.out.println("Before sorting:");
+        kansasTwister.PrintRideHistory();
+
+        // Sorting the Ride history
+        kansasTwister.sortRideHistory(new VisitorComparator());
+
+        // Printing all Visitors in the Ride history again after Sorting is done
+        System.out.println("After sorting:");
+        kansasTwister.PrintRideHistory();
     }
 
 
