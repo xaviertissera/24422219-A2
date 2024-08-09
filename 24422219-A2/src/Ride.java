@@ -10,6 +10,9 @@ public class Ride implements RideInterface {
     private Employee operator;  // This variable will be used to know if the ride is open and who is operating it
     private Queue<Visitor> waitingLine; // Visitor Waiting List
     private LinkedList<Visitor> rideHistory; // This is used to keep the record on Ride History
+    private int maxRider;
+    private int numOfCycles;
+
 
     // Default constructor
     public Ride() {
@@ -18,12 +21,14 @@ public class Ride implements RideInterface {
     }
 
     // Constructor parameters
-    public Ride(String rideName, int capacity, Employee operator) {
+    public Ride(String rideName, int capacity, Employee operator, int maxRider) {
         this.rideName = rideName;
         this.capacity = capacity;
         this.operator = operator;
         this.waitingLine = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
+        this.maxRider = maxRider;
+        this.numOfCycles = 0;
     }
 
     // Getters and Setters
@@ -54,6 +59,22 @@ public class Ride implements RideInterface {
     // Method to assign an Employee to operate the ride
     public void assignOperator(Employee operator) {
         this.operator = operator;
+    }
+
+    public int getMaxRider() {
+        return maxRider;
+    }
+
+    public void setMaxRider(int maxRider) {
+        this.maxRider = maxRider;
+    }
+
+    public int getNumOfCycles() {
+        return numOfCycles;
+    }
+
+    public void setNumOfCycles(int numOfCycles) {
+        this.numOfCycles = numOfCycles;
     }
 
     // Add Visitor to Queue using Offer method
@@ -121,6 +142,32 @@ public class Ride implements RideInterface {
     public void sortRideHistory(Comparator<Visitor> comparator) {
         Collections.sort(rideHistory, comparator);
         System.out.println("Ride history sorted.");
+    }
+
+    //@Override
+    public void RunOneCycle() {
+        if (operator == null) {
+            System.out.println("No operator assigned. You can not run the ride.");
+            return;
+        }
+
+        if (waitingLine.isEmpty()) {
+            System.out.println("No visitors in the waiting line. Can not run the ride.");
+            return;
+        }
+
+        System.out.println("Running one cycle...");
+        int visitorsToRide = Math.min(maxRider, waitingLine.size());
+        for (int i = 0; i < visitorsToRide; i++) {
+            Visitor visitor = waitingLine.poll();
+            if (visitor != null) {
+                rideHistory.add(visitor);
+                System.out.println(visitor.getName() + " has taken the ride.");
+            }
+        }
+
+        numOfCycles++;
+        System.out.println("Run Cycle completed. Total cycles run: " + numOfCycles);
     }
 
 
